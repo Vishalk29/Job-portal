@@ -12,3 +12,15 @@ then other step present in thi link - https://ui.shadcn.com/docs/installation/vi
 ```
 npx shadcn@latest add accordion carousel card drawer input label radio-group select textarea button
 ```
+
+# Setting up SupaBase database
+```
+1 . login into supabase application with git credential -https://supabase.com/
+2 . click on oragnization
+3 . provide the details name org , personal , o$ / month
+4 . Now click on connect
+5 . select App Framework
+6 . click on react - vite
+7 . it will give the data add that into .env file
+8 . create the .env file , supabase.js file , 
+```

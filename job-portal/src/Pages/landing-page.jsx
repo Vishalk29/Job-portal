@@ -23,12 +23,16 @@ const LandingPage = () => {
       </section>
       <div>
         {/* Button */}
-        <div>
-          <Link to='/jobs'>
-          <Button>Find Jobs</Button>
+        <div className="flex gap-6 justify-center">
+          <Link to="/jobs">
+            <Button variant="blue" size="xl">
+              Find Jobs
+            </Button>
           </Link>
-          <Link to='/post-job'>
-          <Button>Post a Jobs</Button>
+          <Link to="/post-job">
+            <Button variant="destructive" size="xl">
+              Post a Jobs
+            </Button>
           </Link>
         </div>
         {/* Carosusal */}

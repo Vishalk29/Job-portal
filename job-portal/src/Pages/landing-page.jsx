@@ -8,6 +8,15 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import companies from "../data/companies.json";
+import faqs from "../data/faqs.json";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 const LandingPage = () => {
   return (
     <main className="flex flex-col gap-10 sm:gap-20 py-10 sm:py-20">
@@ -63,8 +72,34 @@ const LandingPage = () => {
       </Carousel>
       {/* banner */}
       <img src="/public/banner.jpeg" alt="banner image" className="w-full" />
-      <section>{/* card */}</section>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* card */}
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle className="text-3xl">For Job seekers</CardTitle>
+          </CardHeader>
+          <CardContent>
+            Search and apply for jobs , track application , and more.
+          </CardContent>
+        </Card>
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle className="text-3xl">For Employers</CardTitle>
+          </CardHeader>
+          <CardContent>
+            Post jobs , manage applications , and find the best candidates.
+          </CardContent>
+        </Card>
+      </section>
       {/* Accordian */}
+      <Accordion type="single" collapsible>
+        {faqs.map((faqs, index) => (
+          <AccordionItem value="item-1">
+            <AccordionTrigger>{faqs.question}</AccordionTrigger>
+            <AccordionContent>{faqs.answer}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </main>
   );
 };

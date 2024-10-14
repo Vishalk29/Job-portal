@@ -9,7 +9,7 @@ export const AppLayout = () => {
         <Header />
         <Outlet />
       </main>
-      <div className="p-10 text-center bg-footerColor mt-10 text-textColor text-3xl font-mono">
+      <div className="p-10 text-center bg-footerColor mt-10 text-3xl font-mono">
         Made with 💜 vishal kulkarni
       </div>
     </div>

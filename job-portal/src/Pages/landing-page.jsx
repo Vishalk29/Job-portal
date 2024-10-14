@@ -15,6 +15,9 @@ const LandingPage = () => {
             />
           </span>
         </h1>
+        <p className="text-textColor text-xs sm:text-xl sm:mt-4">
+          Explore thousands of job listing or find the perfect candidate
+        </p>
       </section>
       <div>
         {/* Button */}

@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "../ui/button";
 import { SignedIn, SignedOut, SignIn, UserButton } from "@clerk/clerk-react";
-import { PenBox } from "lucide-react";
+import { BriefcaseBusiness, Heart, PenBox } from "lucide-react";
 
 const Header = () => {
   const [showsignIn, setShowsignIn] = useState(false);
-
+  const [search, setSearch] = useSearchParams();
+  useEffect(() => {
+    if (search.get("sign-in")) {
+      setShowsignIn(true);
+    }
+  });
   const handleOutsideSign = (e) => {
     if (e.target === e.currentTarget) {
       setShowsignIn(false);
+      setSearch({});
     }
   };
 
@@ -33,7 +39,28 @@ const Header = () => {
                 Post a Jobs
               </Button>
             </Link>
-            <UserButton />
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: "w-10 h-10",
+                },
+              }}
+            >
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label="My jobs"
+                  labelIcon={<BriefcaseBusiness size={15} />}
+                  href="/my-jobs"
+                />
+              </UserButton.MenuItems>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label="Saved jobs"
+                  labelIcon={<Heart size={15} />}
+                  href="/saved-job"
+                />
+              </UserButton.MenuItems>
+            </UserButton>
           </SignedIn>
         </div>
       </nav>

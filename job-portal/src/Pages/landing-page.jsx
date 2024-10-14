@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -21,6 +23,14 @@ const LandingPage = () => {
       </section>
       <div>
         {/* Button */}
+        <div>
+          <Link to='/jobs'>
+          <Button>Find Jobs</Button>
+          </Link>
+          <Link to='/post-job'>
+          <Button>Post a Jobs</Button>
+          </Link>
+        </div>
         {/* Carosusal */}
       </div>
       {/* banner */}

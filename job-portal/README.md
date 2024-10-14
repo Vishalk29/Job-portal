@@ -41,8 +41,16 @@ npx shadcn@latest add accordion carousel card drawer input label radio-group sel
 7 . to change the theme we need to install one more npm package npm install @clerk/themes
 8 . add this inside the main.jsx/tsx inside clearkprovider as apperance/basetheme
 ```
+
 # Connecting supabase to cleark below link which provide the step
+
 ```
 1 . https://supabase.com/partners/integrations/clerk
 2 . run the command npm i @supabase/supabase-js
+```
+
+# installed the one package for autoplay carusole
+
+```
+npm i embla-carousel-autoplay and used in carosoule
 ```

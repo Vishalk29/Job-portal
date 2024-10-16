@@ -62,11 +62,13 @@ for loading
 ```
 ADDING THE TABLE
 go to supabase > table editor > click on create table > adding the name
+we can cascade that allow to delete and add
 ADDING/ STORING 
 go to supabase > storage > create for resume and company logo
 ADDING ENUMRATED TYPE
 go to supabase >database > create the enum by clicking on Database Enumerated Types > adding the enum
 ADDING POLICY TO TABLE
 go supbase authentication > create policy > enable all read access > and do nessarry modification
+
 ```
 

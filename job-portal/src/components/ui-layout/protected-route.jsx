@@ -7,6 +7,13 @@ const ProtectedRoutes = ({ children }) => {
   if (isLoaded && !isSignedIn && isSignedIn !== undefined) {
     return <Navigate to="/?sign-in=true" />;
   }
+  // This is basically we beacuse if user directly want to go to the /jobs it should route back to the /onboarding page
+  if (
+    user !== undefined &&
+    !user.unsafeMetadata?.role &&
+    pathname !== "/onboarding"
+  )
+    return <Navigate to="/onboarding" />;
   return children;
 };
 

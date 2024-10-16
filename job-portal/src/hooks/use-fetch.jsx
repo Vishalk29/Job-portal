@@ -2,7 +2,7 @@ import { useSession } from "@clerk/clerk-react";
 import React, { useState } from "react";
 
 export const useFetch = (callbackfn, option = {}) => {
-  const [data, setData] = useState(undefined);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const { session } = useSession();
@@ -14,7 +14,7 @@ export const useFetch = (callbackfn, option = {}) => {
       const supabaseAccessToken = await session.getToken({
         template: "supabase",
       });
-      const response = callbackfn(supabaseAccessToken, option, ...args);
+      const response = await callbackfn(supabaseAccessToken, option, ...args);
       setData(response);
       setError(null);
     } catch (error) {

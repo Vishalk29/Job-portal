@@ -54,3 +54,7 @@ npx shadcn@latest add accordion carousel card drawer input label radio-group sel
 ```
 npm i embla-carousel-autoplay and used in carosoule
 ```
+# Using react-spinners
+```
+for loading 
+```

@@ -81,5 +81,5 @@ go supbase authentication > create policy > enable all read access > and do ness
 ```
 I need to update the policy for saved_job table need to update userid + job_id from job table saved_job ={id =1} added
 Insert only allowed authenticated user
-Delete Only delete (requesting_user_id() = user_id)
+Delete Only delete (requesting_user_id() = user_id) and it will update in supabase
 ```

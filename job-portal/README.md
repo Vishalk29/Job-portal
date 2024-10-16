@@ -54,16 +54,20 @@ npx shadcn@latest add accordion carousel card drawer input label radio-group sel
 ```
 npm i embla-carousel-autoplay and used in carosoule
 ```
+
 # Using react-spinners
+
 ```
-for loading 
+for loading
 ```
+
 # Adding the table in supabase
+
 ```
 ADDING THE TABLE
 go to supabase > table editor > click on create table > adding the name
 we can cascade that allow to delete and add
-ADDING/ STORING 
+ADDING/ STORING
 go to supabase > storage > create for resume and company logo
 ADDING ENUMRATED TYPE
 go to supabase >database > create the enum by clicking on Database Enumerated Types > adding the enum
@@ -72,3 +76,10 @@ go supbase authentication > create policy > enable all read access > and do ness
 
 ```
 
+# Saved unsaved job
+
+```
+I need to update the policy for saved_job table need to update userid + job_id from job table saved_job ={id =1} added
+Insert only allowed authenticated user
+Delete Only delete (requesting_user_id() = user_id)
+```

@@ -7,9 +7,12 @@ import {
   CardTitle,
 } from "../ui/card";
 import MyJob from "@/Pages/my-job";
-import { HeartIcon, MapPinIcon, Trash2Icon } from "lucide-react";
+import { Heart, HeartIcon, MapPinIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import { useFetch } from "@/hooks/use-fetch";
+import { saveJob } from "@/api/apiJobs";
+import { useEffect, useState } from "react";
 
 const JobCard = ({
   job,
@@ -17,15 +20,35 @@ const JobCard = ({
   savedInit = false,
   onjobSaved = () => {},
 }) => {
+  const [saved, setSaved] = useState(savedInit);
   const { user } = useUser();
-  console.log(job);
+  // calling saved api
+  const {
+    fetchfn: fetchfnSavedJob,
+    data: dataSavedJob,
+    loading: loadingSavedJob,
+    error: errorSavedJob,
+  } = useFetch(saveJob, {
+    alreadySaved: saved,
+  });
+  // handle saved job function
+  const handleSaveJob = async () => {
+    await fetchfnSavedJob({
+      user_id: user.id,
+      job_id: job.id,
+    });
+    onJobAction();
+  };
+  useEffect(() => {
+    if (dataSavedJob !== undefined) setSaved(dataSavedJob?.length > 0);
+  }, [dataSavedJob]);
   return (
     <Card>
       <CardHeader>
         {/* company title and trashcan */}
         <CardTitle className="flex justify-between font-bold">
           {job.title}
-          {MyJob && (
+          {ismyJobs && (
             <Trash2Icon
               fill="red"
               size={18}
@@ -61,7 +84,21 @@ const JobCard = ({
           </Button>
         </Link>
         {/* Heart icons */}
-        <HeartIcon size={20} stroke="red" fill="red"/>
+        {/* Writing the logic for the heart selected and deselected */}
+        {!ismyJobs && (
+          <Button
+            variant="outline"
+            className="w-15"
+            onClick={handleSaveJob}
+            disabled={loadingSavedJob}
+          >
+            {saved ? (
+              <Heart size={20} fill="red" stroke="red" />
+            ) : (
+              <Heart size={20} />
+            )}
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

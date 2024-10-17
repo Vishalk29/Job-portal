@@ -1,4 +1,11 @@
-import { getSingleJobs } from "@/api/apiJobs";
+import { getSingleJobs, updateHiringStatus } from "@/api/apiJobs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useFetch } from "@/hooks/use-fetch";
 import { useUser } from "@clerk/clerk-react";
 import MDEditor from "@uiw/react-md-editor";
@@ -10,6 +17,7 @@ import { BarLoader } from "react-spinners";
 const Job = () => {
   const { isLoaded, user } = useUser();
   const { id } = useParams();
+  // hook for single job
   const {
     loading: loadingSingleJob,
     fetchfn: fetchFnSingleJobs,
@@ -21,11 +29,24 @@ const Job = () => {
   useEffect(() => {
     if (isLoaded) fetchFnSingleJobs();
   }, [isLoaded]);
+  // creating hook for update job status
+  const {
+    fetchfn: fetchFnUpdateJobs,
+    loading: loadingUpdateJobs,
+    error: errorUpdateJob,
+    data,
+  } = useFetch(updateHiringStatus, {
+    job_id: id,
+  });
+  console.log(data);
+  const handleStatusChange = (value) => {
+    const isOpen = value === "open";
+    fetchFnUpdateJobs(isOpen).then(() => fetchFnSingleJobs());
+  };
 
   if (!isLoaded || loadingSingleJob) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
   }
-
   return (
     <div className="flex flex-col gap-8 mt-5">
       <div className="flex flex-col-reverse gap-6 md:flex-row justify-between items-center">
@@ -59,7 +80,31 @@ const Job = () => {
           )}
         </div>
       </div>
+
       {/* Hiring status */}
+      {loadingUpdateJobs && (
+        <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />
+      )}
+      {dataSingleJobs?.recruiter_id === user?.id && (
+        <Select onValueChange={handleStatusChange}>
+          <SelectTrigger
+            className={`w-full ${
+              dataSingleJobs?.isOpen ? "bg-green-950" : "bg-red-950"
+            }`}
+          >
+            <SelectValue
+              placeholder={
+                "Hiring Status " +
+                (dataSingleJobs?.isOpen ? "( Open )" : "( Closed )")
+              }
+            />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="open">Open</SelectItem>
+            <SelectItem value="closed">Closed</SelectItem>
+          </SelectContent>
+        </Select>
+      )}
 
       <h2 className="text-2xl sm:text-3xl font-bold">About the job</h2>
       <p className="sm:text-lg">{dataSingleJobs?.description}</p>

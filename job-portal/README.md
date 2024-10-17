@@ -83,3 +83,11 @@ I need to update the policy for saved_job table need to update userid + job_id f
 Insert only allowed authenticated user
 Delete Only delete (requesting_user_id() = user_id) and it will update in supabase
 ```
+
+# installing npm i @uiw/react-md-editor
+
+```
+What we are looking for inside that we using this show the requirement in dots
+///////////////////
+Update the policies for jobs recruiter_id authenticated( (requesting_user_id() = recruiter_id))
+```

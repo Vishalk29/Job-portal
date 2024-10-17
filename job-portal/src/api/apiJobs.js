@@ -1,5 +1,6 @@
 import supabaseClient from "@/utils/supaBase";
 
+// - get all jobs
 export async function getJobs(token, { location, company_id, searchQuery }) {
   const supaBase = await supabaseClient(token);
 
@@ -55,4 +56,37 @@ export async function saveJob(token, { alreadySaved }, saveData) {
 
     return data;
   }
+}
+//  - single jobs
+export async function getSingleJobs(token, { job_id }) {
+  const supabase = await supabaseClient(token);
+  const { data, error } = await supabase
+    .from("jobs")
+    .select(
+      "* , company: companies(name, logo_url), applications:applications(*) "
+    )
+    .eq("id", job_id)
+    .single();
+  if (error) {
+    console.error("Error fetching single job", error);
+    return null;
+  }
+  return data;
+}
+
+//  - job isOpen toggle - (recruiter_id = auth.uid())
+export async function updateHiringStatus(token, { job_id }, isOpen) {
+  const supabase = await supabaseClient(token);
+  const { data, error } = await supabase
+    .from("jobs")
+    .update({ isOpen })
+    .eq("id", job_id)
+    .select();
+
+  if (error) {
+    console.error("Error Updating Hiring Status:", error);
+    return null;
+  }
+
+  return data;
 }

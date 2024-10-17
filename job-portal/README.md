@@ -88,5 +88,6 @@ Delete Only delete (requesting_user_id() = user_id) and it will update in supaba
 
 ```
 What we are looking for inside that we using this show the requirement in dots
+///////////////////
 Update the policies for jobs recruiter_id authenticated( (requesting_user_id() = recruiter_id))
 ```

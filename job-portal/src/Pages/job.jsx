@@ -114,7 +114,7 @@ const Job = () => {
       </h2>
       <MDEditor.Markdown
         source={dataSingleJobs?.requirements}
-        className="bg-transparent sm:text-lg" // add global ul styles - tutorial
+        className="bg-transparent sm:text-lg text-teal-50" // add global ul styles - tutorial
       />
       {/* Render the application */}
     </div>

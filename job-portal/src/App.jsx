@@ -4,7 +4,7 @@ import LandingPage from "./Pages/landing-page";
 import OnboardingPage from "./Pages/onboardingPage";
 import { JobListing } from "./Pages/job-listing";
 import Job from "./Pages/job";
-import { SavedJob } from "./Pages/saved-job";
+import  SavedJob  from "./Pages/saved-job";
 import PostJob from "./Pages/post-job";
 import MyJob from "./Pages/my-job";
 import { ThemeProvider } from "./components/theme-provider";

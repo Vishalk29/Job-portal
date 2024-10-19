@@ -12,6 +12,30 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+// Adding schema using zod
+const schema = z.object({
+  experience: z
+    .number()
+    .min(0, { message: "Experience must be at least 0" })
+    .int(),
+  skills: z.string().min(1, { message: "Skills are required" }),
+  education: z.enum(["Intermediate", "Graduate", "Post Graduate"], {
+    message: "Education is required",
+  }),
+  resume: z
+    .any()
+    .refine(
+      (file) =>
+        file[0] &&
+        (file[0].type === "application/pdf" ||
+          file[0].type === "application/msword"),
+      { message: "Only PDF or Word documents are allowed" }
+    ),
+});
 
 const AppliedJobDrawer = ({
   user,
@@ -19,6 +43,15 @@ const AppliedJobDrawer = ({
   fetchFnSingleJobs,
   applied = false,
 }) => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
   return (
     <Drawer open={applied ? false : undefined}>
       <DrawerTrigger asChild>

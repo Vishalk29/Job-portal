@@ -116,6 +116,7 @@ const Job = () => {
       <MDEditor.Markdown
         source={dataSingleJobs?.requirements}
         className="bg-transparent sm:text-lg text-white" // add global ul styles - tutorial
+
       />
       {/* Render the application */}
       {dataSingleJobs.recruiter_id !== user.id && (

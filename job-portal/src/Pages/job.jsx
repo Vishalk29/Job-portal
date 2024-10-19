@@ -1,4 +1,5 @@
 import { getSingleJobs, updateHiringStatus } from "@/api/apiJobs";
+import AppliedJobDrawer from "@/components/ui-layout/applied-job";
 import {
   Select,
   SelectContent,
@@ -117,6 +118,14 @@ const Job = () => {
         className="bg-transparent sm:text-lg" // add global ul styles - tutorial
       />
       {/* Render the application */}
+      {dataSingleJobs.recruiter_id !== user.id && (
+        <AppliedJobDrawer 
+        dataSingleJobs={dataSingleJobs}
+        user={user}
+        fetchFnSingleJobs={dataSingleJobs}
+        applied={dataSingleJobs?.applications?.find((ap) => ap.candidate_id === user.id)}
+        />
+      )}
     </div>
   );
 };

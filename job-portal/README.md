@@ -95,5 +95,6 @@ Update the policies for jobs recruiter_id authenticated( (requesting_user_id() =
 # Applying job section
 
 ```
-first applying the policy (enable insert for autheticated users only )for and installing react-hook-form with zod
+first applying the policy (enable insert for autheticated users only )for and installing react-hook-form with zod and resolvers
+npm i react-hook-form zod @hookform/resolvers
 ```

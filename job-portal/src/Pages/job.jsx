@@ -116,15 +116,16 @@ const Job = () => {
       <MDEditor.Markdown
         source={dataSingleJobs?.requirements}
         className="bg-transparent sm:text-lg text-white" // add global ul styles - tutorial
-
       />
       {/* Render the application */}
       {dataSingleJobs.recruiter_id !== user.id && (
-        <AppliedJobDrawer 
-        dataSingleJobs={dataSingleJobs}
-        user={user}
-        fetchFnSingleJobs={dataSingleJobs}
-        applied={dataSingleJobs?.applications?.find((ap) => ap.candidate_id === user.id)}
+        <AppliedJobDrawer
+          dataSingleJobs={dataSingleJobs}
+          user={user}
+          fetchFnSingleJobs={fetchFnSingleJobs}
+          applied={dataSingleJobs?.applications?.find(
+            (ap) => ap.candidate_id === user.id
+          )}
         />
       )}
     </div>

@@ -1,4 +1,5 @@
 import { getSingleJobs, updateHiringStatus } from "@/api/apiJobs";
+import ApplicationCard from "@/components/ui-layout/application-card";
 import AppliedJobDrawer from "@/components/ui-layout/applied-job";
 import {
   Select,
@@ -39,7 +40,6 @@ const Job = () => {
   } = useFetch(updateHiringStatus, {
     job_id: id,
   });
-  console.log(data);
   const handleStatusChange = (value) => {
     const isOpen = value === "open";
     fetchFnUpdateJobs(isOpen).then(() => fetchFnSingleJobs());
@@ -128,6 +128,21 @@ const Job = () => {
           )}
         />
       )}
+
+      {dataSingleJobs?.applications?.length > 0 &&
+        dataSingleJobs?.recruiter_id === user?.id && (
+          <div className="flex flex-col gap-2">
+            <h2 className="text-2xl sm:text-3xl font-bold">Applications</h2>
+            {dataSingleJobs?.applications.map((application) => {
+              return (
+                <ApplicationCard
+                  key={application?.id}
+                  application={application}
+                />
+              );
+            })}
+          </div>
+        )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const CreatedJobs = () => {
   const {
     loading: loadingCreatedJobs,
     data: createdJobs,
-    fn: fnCreatedJobs,
+    fetchfn: fnCreatedJobs,
   } = useFetch(getMyJobs, {
     recruiter_id: user.id,
   });

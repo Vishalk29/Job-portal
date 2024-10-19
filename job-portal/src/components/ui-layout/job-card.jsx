@@ -18,7 +18,7 @@ const JobCard = ({
   job,
   ismyJobs = false,
   savedInit = false,
-  onjobSaved = () => {},
+  onJobAction = () => {},
 }) => {
   const [saved, setSaved] = useState(savedInit);
   const { user } = useUser();
